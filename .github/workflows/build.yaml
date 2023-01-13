@@ -4,12 +4,23 @@ on:
   workflow_dispatch:
   # schedule:
   #   - cron: '0 0 * * *' 
-    push:
-      branches:
-        - main
+  push:
+    branches:
+      - main
 
 jobs:
   build_humble:
+    permissions:
+      actions: write
+      checks: write
+      contents: write
+      deployments: write
+      issues: write
+      packages: write
+      pull-requests: write
+      repository-projects: write
+      security-events: write
+      statuses: write
     runs-on: ubuntu-22.04
     steps:
       - uses: jspricke/ros-deb-builder-action@v1.0
