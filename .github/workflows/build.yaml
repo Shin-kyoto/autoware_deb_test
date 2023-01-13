@@ -1,0 +1,21 @@
+name: build
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 0 * * *' 
+    push:
+      branches:
+        - main
+
+jobs:
+  build_humble:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: jspricke/ros-deb-builder-action@v1.0
+        with:
+          DEB_DISTRO: jammy
+          ROS_DISTRO: humble
+          REPOS_FILE: https://raw.githubusercontent.com/Shin-kyoto/autoware_deb_test/main/autoware_msgs.repos
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SQUASH_HISTORY: true
